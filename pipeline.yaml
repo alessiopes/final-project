@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: ci-cd-pipeline
+spec:
+  tasks:
+  - name: build-and-push
+    taskRef:
+      name: buildah
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: IMAGE
+      value: docker.io/YOUR_USERNAME/YOUR_APP:latest
+  - name: deploy-to-cluster
+    taskRef:
+      name: kubectl-apply
+    runAfter:
+    - build-and-push
+    params:
+    - name: manifest
+      value: ./kubernetes/deployment.yaml
