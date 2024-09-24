@@ -20,3 +20,6 @@ The goal of this project is to demonstrate a complete DevOps pipeline, from sett
 
 ### Usage
 1. Clone the repository:
+   ```git clone https://github.com/alessiopes/final-project.git```
+2. Set up and run the application.
+
